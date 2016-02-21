@@ -39,13 +39,6 @@ function clean {
             rotate_file $target
         fi
     done
-    dirs=(.antigen .tmux .zprezto .antigen .tmux .zgen)
-    for dir in ${dirs[@]} ; do
-        target="$HOME/$dir"
-        if [[ -d $target ]]; then
-            rotate_file $target
-        fi
-    done
 }
 
 if [[ $1 = "clean" ]]; then
@@ -54,7 +47,7 @@ if [[ $1 = "clean" ]]; then
 fi
 
 # Setup symlinks
-SYMLINKS=$( find $DOTFILES/ -name '*.symlink' )
+SYMLINKS=$( find $DOTFILES -name '*.symlink' )
 for file in $SYMLINKS ; do
     target="$HOME/.$( basename $file '.symlink' )"
     if [[ ! -e $target ]]; then
@@ -74,16 +67,23 @@ fi
 
 if [[ ! -d ~/.zgen ]]; then
     git clone https://github.com/tarjoilija/zgen.git ~/.zgen
-    source ~/.zshrc
 fi
 
 if [[ ! -d fasd ]]; then
-	git clone https://github.com/clvv/fasd.git fasd
-	cd fasd
-	PREFIX=$HOME/local make install
+    dir=`mktemp -d` && cd $dir
+
+    if [[ ! -z $dir ]]; then
+        git clone https://github.com/clvv/fasd.git $dir
+        pushd $dir
+        PREFIX=$HOME/local make install
+        popd
+        rm -rf $dir
+    fi
 fi
 
 if [[ ! -d ~/.vim ]]; then
+    echo $pwd	
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    vim -i NONE -c PlugInstall -c quitall
+    cd ~/.vim
+    INSTALLMODE=1 vim -i NONE -c PlugInstall -c quitall
 fi
