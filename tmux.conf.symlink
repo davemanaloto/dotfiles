@@ -18,7 +18,8 @@ setw -g mode-keys vi
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
 # Load theme before plugins so they are properly usej
-source-file ~/.dotfiles/tmux.theme.laptop
+if-shell 'test "$(uname)" = "Darwin"' 'source ~/.dotfiles/tmux.theme.laptop'
+if-shell 'test "$(uname)" = "Linux"' 'source ~/.dotfiles/tmux.theme.desktop'
 
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'

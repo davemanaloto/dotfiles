@@ -1,0 +1,23 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+
+[user]
+	email = dave.manaloto@gmail.com
+	name = Dave Manaloto
+
+[core]
+    editor = vim
+
+[color]
+    ui = auto
+
+[diff]
+    tool = vimdiff
+
+[difftool]
+    prompt = false
+
+[alias]
+    d = difftool
