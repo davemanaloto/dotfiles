@@ -36,7 +36,7 @@ fi
 # Exports
 export EDITOR=vim
 export DEFAULT_USER="dave"
-PATH="$HOME/local/bin:/usr/local/bin:$PATH"
+PATH="$HOME/local/bin:/usr/local/bin:$HOME/bin:$PATH"
 MANPATH="$HOME/local/man:$MANPATH"
 
 # Aliases
