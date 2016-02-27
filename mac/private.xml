@@ -1,0 +1,39 @@
+<root>
+    <item>
+        <name>Mapping hjkl on left up down and right</name>
+        <identifier>private.mapping_hjkl_on_arrow</identifier>
+        <autogen>__KeyToKey__
+            KeyCode::H, ModifierFlag::CONTROL_L,
+            KeyCode::CURSOR_LEFT
+        </autogen>
+        <autogen>__KeyToKey__
+            KeyCode::J, ModifierFlag::CONTROL_L,
+            KeyCode::CURSOR_DOWN
+        </autogen>
+        <autogen>__KeyToKey__
+            KeyCode::K, ModifierFlag::CONTROL_L,
+            KeyCode::CURSOR_UP
+        </autogen>
+        <autogen>__KeyToKey__
+            KeyCode::L, ModifierFlag::CONTROL_L,
+            KeyCode::CURSOR_RIGHT
+        </autogen>
+    </item>
+    <item>
+        <name>Map Ctrl+R to Escape when pressed alone</name>
+        <identifier>private.mapping_ctrlr_escape_alone</identifier>
+        <autogen>__KeyOverlaidModifier__
+            KeyCode::CONTROL_R,
+            KeyCode::CONTROL_R,
+            KeyCode::ESCAPE
+        </autogen>
+    </item>
+    <item>
+        <name>Map Shift+Escape to backtick</name>
+        <identifier>private.mapping_shift_escape_to_backtick</identifier>
+        <autogen>__KeyToKey__
+            KeyCode::ESCAPE, ModifierFlag::CONTROL_L,
+            KeyCode::BACKQUOTE
+        </autogen>
+    </item>
+</root>
