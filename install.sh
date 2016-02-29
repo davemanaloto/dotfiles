@@ -69,7 +69,7 @@ if [[ ! -d ~/.zgen ]]; then
     git clone https://github.com/tarjoilija/zgen.git ~/.zgen
 fi
 
-if [[ ! -d fasd ]]; then
+if [[ ! -f ~/local/bin/fasd ]]; then
     dir=`mktemp -d` && cd $dir
 
     if [[ ! -z $dir ]]; then
@@ -82,8 +82,15 @@ if [[ ! -d fasd ]]; then
 fi
 
 if [[ ! -d ~/.vim ]]; then
-    echo $pwd	
+    echo $pwd
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     cd ~/.vim
     INSTALLMODE=1 vim -i NONE -c PlugInstall -c quitall
+fi
+
+if [[ `uname` == "Darwin" ]]; then
+    if [[ -L ~/Library/Application\ Support/Karabiner/private.xml ]]; then
+        rm ~/Library/Application\ Support/Karabiner/private.xml
+    fi
+    ln -s ~/.dotfiles/mac/private.xml ~/Library/Application\ Support/Karabiner/private.xml
 fi
