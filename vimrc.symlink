@@ -81,6 +81,7 @@ set linebreak
 "{{{ Look
 if has('gui_running')
   set guifont=Inconsolata-g\ for\ Powerline:h12
+  let g:fzf_launcher = "/$HOME/bin/In_a_new_term_function %s"
 else
   set t_Co=256
 endif

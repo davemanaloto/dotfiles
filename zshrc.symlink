@@ -49,6 +49,9 @@ alias vimrc='$EDITOR $HOME/.vimrc'
 if [[ `uname` == "Darwin" ]]; then
     # Mac specific
     clip() { [ -t 0 ] && pbpaste || pbcopy; }
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.7.5.1
+    export PATH=$PATH:$EC2_HOME/bin
 elif [[ `uname` == "Linux" ]]; then
     # Linux specific
 fi

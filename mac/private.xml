@@ -23,8 +23,8 @@
         <name>Map Ctrl+R to Escape when pressed alone</name>
         <identifier>private.mapping_ctrlr_escape_alone</identifier>
         <autogen>__KeyOverlaidModifier__
-            KeyCode::CONTROL_R,
-            KeyCode::CONTROL_R,
+            KeyCode::CONTROL_L,
+            KeyCode::CONTROL_L,
             KeyCode::ESCAPE
         </autogen>
     </item>
@@ -34,6 +34,29 @@
         <autogen>__KeyToKey__
             KeyCode::ESCAPE, ModifierFlag::CONTROL_L,
             KeyCode::BACKQUOTE
+        </autogen>
+    </item>
+    <item>
+        <name>Disable right-cmd+space</name>
+        <identifier>private.mapping_disable_rightcmd_space</identifier>
+        <autogen>__KeyToKey__
+            KeyCode::SPACE, ModifierFlag::COMMAND_R,
+        </autogen>
+    </item>
+    <item>
+        <name>Swap backslash and del</name>
+        <identifier>private.mapping_swap_backslash_del</identifier>
+        <device_only>
+            DeviceVendor::APPLE_INC,
+            DeviceProduct::RawValue::0x0245,
+        </device_only>
+        <autogen>__KeyToKey__
+            KeyCode::DELETE,
+            KeyCode::BACKSLASH
+        </autogen>
+        <autogen>__KeyToKey__
+            KeyCode::BACKSLASH,
+            KeyCode::DELETE
         </autogen>
     </item>
 </root>
