@@ -90,6 +90,7 @@ fi
 if [[ ! -d ~/.config/nvim ]]; then
     curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    link_file $HOME/.dotfiles/init.vim  $HOME/.config/nvim/init.vim
     INSTALLMODE=1 nvim -i NONE -c PlugInstall -c quitall
 fi
 

@@ -44,7 +44,11 @@ Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
-"
+let is_install = $INSTALLMODE
+if is_install == '1'
+  finish
+endif
+
 ""{{{ General
 
 " Code folding settings
