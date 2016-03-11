@@ -3,7 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'amix/vim-zenroom2'
 Plug 'benekastah/neomake'
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chun-Yang/vim-action-ag'
 Plug 'easymotion/vim-easymotion'
 Plug 'godlygeek/tabular'
@@ -112,6 +112,8 @@ set writebackup
 " Change mapleader
 let mapleader = "\<Space>"
 
+inoremap <c-x><c-k> <c-x><c-k>
+
 " Map jj to exit insert mode.
 inoremap jj <Esc>
 
@@ -143,6 +145,13 @@ vnoremap <S-Tab> <gv
 " Start interactive EasyAlign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+
+" Ultisnips
+" Set ultisnips triggers
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "}}}
 "
