@@ -34,7 +34,7 @@ if ! zgen saved; then
 fi
 
 # Exports
-export EDITOR=vim
+export EDITOR=nvim
 export DEFAULT_USER="dave"
 PATH="$HOME/local/bin:/usr/local/bin:$HOME/bin:$PATH"
 MANPATH="$HOME/local/man:$MANPATH"
@@ -44,6 +44,8 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias vimrc='$EDITOR $HOME/.vimrc'
+alias nvimrc='$EDITOR $HOME/.config/nvim/init.vim'
+alias vim=$EDITOR
 
 # Platform specific changes
 if [[ `uname` == "Darwin" ]]; then

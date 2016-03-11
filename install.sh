@@ -22,7 +22,7 @@ function rotate_file {
     while [ -e $new_target ]
     do
         count=$(( $count + 1 ))
-    	new_target="$1.backup.$count"
+        new_target="$1.backup.$count"
     done
     echo "Moving $1 -> $new_target"
     mv $1 $new_target
@@ -56,13 +56,13 @@ for file in $SYMLINKS ; do
 done
 
 if [[ ! -d ~/.fzf ]]; then
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install --no-update-rc --key-bindings --completion
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --no-update-rc --key-bindings --completion
 fi
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	~/.tmux/plugins/tpm/bin/install_plugins
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    ~/.tmux/plugins/tpm/bin/install_plugins
 fi
 
 if [[ ! -d ~/.zgen ]]; then
@@ -82,10 +82,15 @@ if [[ ! -f ~/local/bin/fasd ]]; then
 fi
 
 if [[ ! -d ~/.vim ]]; then
-    echo $pwd
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     cd ~/.vim
     INSTALLMODE=1 vim -i NONE -c PlugInstall -c quitall
+fi
+
+if [[ ! -d ~/.config/nvim ]]; then
+    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    INSTALLMODE=1 nvim -i NONE -c PlugInstall -c quitall
 fi
 
 if [[ `uname` == "Darwin" ]]; then

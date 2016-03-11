@@ -1,21 +1,33 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'Shougo/deoplete.nvim'     " Asynchronous completion
-Plug 'benekastah/neomake'       " Asynchronous job completion
-Plug 'janko-m/vim-test'         "
 Plug 'airblade/vim-gitgutter'
-Plug 'sgur/vim-editorconfig'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'amix/vim-zenroom2'
+Plug 'benekastah/neomake'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'Chun-Yang/vim-action-ag'
+Plug 'easymotion/vim-easymotion'
 Plug 'godlygeek/tabular'
+Plug 'hail2u/vim-css3-syntax'
 Plug 'honza/vim-snippets'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script'
+Plug 'Konfekt/FastFold'
 Plug 'pangloss/vim-javascript'
-Plug 'tomtom/tcomment_vim'
+Plug 'rking/ag.vim'
+Plug 'skammer/vim-css-color'
+Plug 'sgur/vim-editorconfig'
+Plug 'Shougo/deoplete.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'terryma/vim-expand-region'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tomasr/molokai'
-Plug 'tpope/vim-endwise'
+"Plug 'tomtom/tcomment_vim'
+"Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rails'
@@ -25,23 +37,10 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-Plug 'SirVer/ultisnips'
-Plug 'terryma/vim-expand-region'
-Plug 'rking/ag.vim'
-
-Plug 'Yggdroot/indentLine'
-Plug 'amix/vim-zenroom2'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'chriskempson/base16-vim'
-Plug 'groenewege/vim-less'
-Plug 'hail2u/vim-css3-syntax'
-"Plug 'edkolev/tmuxline.vim'
-Plug 'easymotion/vim-easymotion'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/LargeFile'
-Plug 'Konfekt/FastFold'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -62,17 +61,13 @@ set hlsearch
 " Disable wrapping
 set wrap
 set linebreak
-
 "}}}
 
-let g:deoplete#enable_at_startup = 1
-"
+
 "{{{ Look
 if has('gui_running')
   set guifont=Inconsolata-g\ for\ Powerline:h12
   let g:fzf_launcher = "/$HOME/bin/In_a_new_term_function %s"
-else
-
 endif
 
 set background=dark
@@ -92,22 +87,13 @@ set invlist
 set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
-set noshowmode " Hide the default mode text
+set noshowmode " Hide the default mode text since it shows in our status line
 
 " Airline status line
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='molokai'
-
-" let g:tmuxline_preset = {
-"        \'a'    : '#S',
-"        \'win'  : ['#I', '#W'],
-"        \'cwin' : ['#I', '#W', '#F'],
-"        \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}'],
-"        \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}', '#\{battery_icon\}#\{battery_percentage\}'],
-"        \'z'    : '%l:%M %p %b %d',
-"        \'options' : {'status-justify' : 'left'}}
-" "}}}
+"}}}
 
 "{{{ Backups
 set backup
@@ -119,29 +105,16 @@ set writebackup
 
 "{{{ Custom key mappings
 
-" Map jj to exit insert mode.
-inoremap jj <Esc>
-
-" Shift-tab to de-indent
-nnoremap <S-Tab> <<
-inoremap <S-Tab> <C-d>
-
 " Change mapleader
 let mapleader = "\<Space>"
 
-" Toggle paste mode
-map <leader>v :set paste!<cr>
+" Map jj to exit insert mode.
+inoremap jj <Esc>
 
 " Toggle displaying all characters
-nmap <leader>l :set list!<CR>:set relativenumber!<CR>
-
-" Toggle the indent line plugin
-nmap <leader>i :IndentLinesToggle<cr>
+nmap <leader>l :set list!<CR>:set relativenumber!<CR>:IndentLinesToggle<CR>
 
 " Spell checking
-map <leader>ss :setlocal spell!<cr>
-map <leader>sn ]s
-map <leader>s] [s
 map <leader>sa zg
 map <leader>s? z=
 
@@ -149,15 +122,7 @@ map <leader>s? z=
 nnoremap <Leader>o :FZF<CR>
 map <C-p> :FZF<CR>
 
-" Copy & paste to system clipboard
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
-
-" Enter goyo mode
+" Toggle Zen-mode
 nnoremap <silent> <leader>z :Goyo<cr>
 
 " Tab switching
@@ -176,6 +141,8 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "}}}
+"
+let g:deoplete#enable_at_startup = 1
 
 " For Commits and BCommits to customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -187,7 +154,7 @@ autocmd VimEnter * command! Colors
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" Goyo
+" {{{ Goyo - Zen Mode
 function! s:goyo_enter()
   silent !tmux set status off
   "set noshowmode
@@ -218,7 +185,18 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" }}}
 
 " Enable neomake on the current file on every write
 autocmd! BufWritePost * Neomake
 
+" {{{
+" let g:tmuxline_preset = {
+"        \'a'    : '#S',
+"        \'win'  : ['#I', '#W'],
+"        \'cwin' : ['#I', '#W', '#F'],
+"        \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}'],
+"        \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}', '#\{battery_icon\}#\{battery_percentage\}'],
+"        \'z'    : '%l:%M %p %b %d',
+"        \'options' : {'status-justify' : 'left'}}
+" "}}}
