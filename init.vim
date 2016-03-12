@@ -1,9 +1,12 @@
-call plug#begin('~/.config/nvim/plugged')
+" vim:fdm=marker
 
+" {{{ Plugins
+call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'amix/vim-zenroom2'
+Plug 'ap/vim-css-color'
 Plug 'benekastah/neomake'
-"Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chun-Yang/vim-action-ag'
 Plug 'easymotion/vim-easymotion'
 Plug 'godlygeek/tabular'
@@ -16,18 +19,16 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script'
 Plug 'Konfekt/FastFold'
+Plug 'nelstrom/vim-markdown-folding'
 Plug 'pangloss/vim-javascript'
 Plug 'rking/ag.vim'
-Plug 'ap/vim-css-color'
 Plug 'sgur/vim-editorconfig'
 Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-expand-region'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tomasr/molokai'
-" Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-commentary'
-"Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rails'
@@ -43,18 +44,18 @@ Plug 'vim-scripts/LargeFile'
 Plug 'Yggdroot/indentLine'
 call plug#end()
 
-let is_install = $INSTALLMODE
-if is_install == '1'
+if $INSTALLMODE == '1'
   finish
 endif
+" }}}
 
-""{{{ General
+"{{{ General
 
 " Code folding settings
 set foldmethod=syntax " fold based on indent
 set foldnestmax=10 " deepest fold is 10 levels
 set nofoldenable " don't fold by default
-set foldlevel=1
+set foldlevelstart=0
 
 " Search settings
 set ignorecase
@@ -68,7 +69,6 @@ set linebreak
 " Disable mouse clicking
 set mouse -=a
 "}}}
-
 
 "{{{ Look
 if has('gui_running')
@@ -117,10 +117,10 @@ set writebackup
 " Change mapleader
 let mapleader = "\<Space>"
 
-"inoremap <c-x><c-k> <c-x><c-k>
+"imap <c-x><c-k> <c-x><c-k>
 
 " Map jj to exit insert mode.
-inoremap jj <Esc>
+imap jj <Esc>
 
 " Toggle displaying all characters
 nmap <leader>l :set list!<CR>:set relativenumber!<CR>:IndentLinesToggle<CR>
@@ -130,22 +130,22 @@ map <leader>sa zg
 map <leader>s? z=
 
 " File finding
-nnoremap <Leader>o :FZF<CR>
+nmap <Leader>o :FZF<CR>
 map <C-p> :FZF<CR>
 
 " Toggle Zen-mode
-nnoremap <silent> <leader>z :Goyo<cr>
+nmap <silent> <leader>z :Goyo<cr>
 
 " Tab switching
-nnoremap <leader>[ :tabprevious<CR>
-nnoremap <leader>] :tabnext<CR>
+nmap <leader>[ :tabprevious<CR>
+nmap <leader>] :tabnext<CR>
 
 " Allow indent/deindent with tab/shift-tab
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
-inoremap <S-Tab> <C-D>
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+nmap <Tab> >>_
+nmap <S-Tab> <<_
+imap <S-Tab> <C-D>
+vmap <Tab> >gv
+vmap <S-Tab> <gv
 
 " Start interactive EasyAlign
 xmap ga <Plug>(EasyAlign)
@@ -161,6 +161,10 @@ nmap <leader>ge :Gedit<cr>
 nmap <silent><leader>gr :Gread<cr>
 nmap <silent><leader>gb :Gblame<cr>
 nmap <silent><leader>gc :Gcommit<cr>
+
+" Folding
+nmap <silent><leader>z  za
+vmap <silent><leader>z  za
 
 "}}}
 "
@@ -202,10 +206,16 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
+" {{{ Buffer/File Open/Close
 " Enable neomake on the current file on every write
-autocmd! BufWritePost * Neomake
+autocmd BufWritePost * Neomake
 
-" {{{
+" save and restore folds when a file is closed and re-opened
+autocmd BufWinLeave * mkview
+autocmd BufWinEnter * silent! loadview
+"}}}
+
+" {{{ Tmuxline
 " let g:tmuxline_preset = {
 "        \'a'    : '#S',
 "        \'win'  : ['#I', '#W'],
