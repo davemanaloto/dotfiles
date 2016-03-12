@@ -9,6 +9,7 @@
 
 [core]
     editor = nvim
+	pager = less -F -X
 
 [color]
     ui = auto
