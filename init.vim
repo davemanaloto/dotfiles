@@ -41,6 +41,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/LargeFile'
 Plug 'Yggdroot/indentLine'
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
+
 
 call plug#end()
 
@@ -72,10 +76,14 @@ set linebreak
 if has('gui_running')
   set guifont=Inconsolata-g\ for\ Powerline:h12
   let g:fzf_launcher = "/$HOME/bin/In_a_new_term_function %s"
+else
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
 set background=dark
-colorscheme molokai
+"colorscheme molokai
+let g:gruvbox_contrast_dark='hard'
+colorscheme base16-atelierdune
 
 set laststatus=2
 set showtabline=2
@@ -96,7 +104,8 @@ set noshowmode " Hide the default mode text since it shows in our status line
 " Airline status line
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='molokai'
+"let g:airline_theme='molokai'
+let g:airline_theme='base16_atelierdune'
 "}}}
 
 "{{{ Backups

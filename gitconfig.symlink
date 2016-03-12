@@ -8,7 +8,7 @@
 	name = Dave Manaloto
 
 [core]
-    editor = vim
+    editor = nvim
 
 [color]
     ui = auto
