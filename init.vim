@@ -18,15 +18,15 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'Konfekt/FastFold'
 Plug 'pangloss/vim-javascript'
 Plug 'rking/ag.vim'
-Plug 'skammer/vim-css-color'
+Plug 'ap/vim-css-color'
 Plug 'sgur/vim-editorconfig'
 Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-expand-region'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tomasr/molokai'
-"Plug 'tomtom/tcomment_vim'
-"Plug 'tpope/vim-commentary'
+" Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 "Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
@@ -41,11 +41,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/LargeFile'
 Plug 'Yggdroot/indentLine'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Plug 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
-
-
+" Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+" Plug 'chriskempson/base16-vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'xolox/vim-colorscheme-switcher'
+" Plug 'xolox/vim-misc'
 call plug#end()
 
 let is_install = $INSTALLMODE
@@ -69,6 +69,9 @@ set hlsearch
 " Disable wrapping
 set wrap
 set linebreak
+
+" Disable mouse clicking
+set mouse -=a
 "}}}
 
 
@@ -81,9 +84,9 @@ else
 endif
 
 set background=dark
-"colorscheme molokai
-let g:gruvbox_contrast_dark='hard'
-colorscheme base16-atelierdune
+colorscheme molokai
+"let g:gruvbox_contrast_dark='hard'
+"colorscheme base16-atelierdune
 
 set laststatus=2
 set showtabline=2
@@ -105,7 +108,10 @@ set noshowmode " Hide the default mode text since it shows in our status line
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 "let g:airline_theme='molokai'
-let g:airline_theme='base16_atelierdune'
+"let g:airline_theme='base16_atelierdune'
+let g:airline_theme='molokai'
+
+'
 "}}}
 
 "{{{ Backups
@@ -161,6 +167,20 @@ nmap ga <Plug>(EasyAlign)
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" Commmenting
+nmap <leader>c gcc
+vmap <leader>c gc
+
+" Fugitive
+nmap <silent> <leader>gs :Gstatus<cr>
+nmap <leader>ge :Gedit<cr>
+nmap <silent><leader>gr :Gread<cr>
+nmap <silent><leader>gb :Gblame<cr>
+nmap <silent><leader>gc :Gcommit<cr>
+
+nmap <silent><F10> :PrevColorScheme<CR>
+nmap <silent><F12> :NextColorScheme<CR>
 
 "}}}
 "
@@ -222,3 +242,7 @@ autocmd! BufWritePost * Neomake
 "        \'z'    : '%l:%M %p %b %d',
 "        \'options' : {'status-justify' : 'left'}}
 " "}}}
+
+" Advanced customization using autoload functions
+autocmd VimEnter * command! Colors
+  \ call fzf#vim#colors({'down': '15%', 'options': '--reverse --margin 30%,0'})
