@@ -57,6 +57,7 @@ if [[ `uname` == "Darwin" ]]; then
 elif [[ `uname` == "Linux" ]]; then
     # Linux specific
     export PATH=$HOME/.linuxbrew/bin:$PATH
+    . ~/.local/base16-shell/base16-atelierdune.dark.sh
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

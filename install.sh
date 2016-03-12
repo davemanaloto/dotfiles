@@ -94,6 +94,10 @@ if [[ ! -d ~/.config/nvim ]]; then
     INSTALLMODE=1 nvim -i NONE -c PlugInstall -c quitall
 fi
 
+if [[ ! -d ~/.local/base16-shell ]]; then
+    git clone https://github.com/chriskempson/base16-shell.git ~/.local/base16-shell
+fi
+
 if [[ `uname` == "Darwin" ]]; then
     if [[ -L ~/Library/Application\ Support/Karabiner/private.xml ]]; then
         rm ~/Library/Application\ Support/Karabiner/private.xml
