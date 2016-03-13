@@ -1,14 +1,18 @@
 <root>
-   <item>
-        <name>Map Ctrl+R to Escape when pressed alone</name>
-        <identifier>private.mapping_ctrlr_escape_alone</identifier>
-        <autogen>__KeyOverlaidModifier__
-            KeyCode::CONTROL_L,
-            KeyCode::CONTROL_L,
-            KeyCode::ESCAPE
-        </autogen>
-    </item>
+    <devicevendordef>
+        <vendorname>KEYED_UP_LABS</vendorname>
+        <vendorid>0x05AC</vendorid>
+    </devicevendordef>
+    <deviceproductdef>
+        <productname>KUL87</productname>
+        <productid>0x024F</productid>
+    </deviceproductdef>
     <item>
+        <name>JIS Underscore to Control_R</name>
+        <identifier>private.jis_underscore</identifier>
+        <autogen>__KeyToKey__ KeyCode::JIS_UNDERSCORE, KeyCode::CONTROL_L</autogen>
+    </item>
+   <item>
         <name>Map Shift+Escape to backtick</name>
         <identifier>private.mapping_shift_escape_to_backtick</identifier>
         <autogen>__KeyToKey__
@@ -19,33 +23,34 @@
             KeyCode::ESCAPE, ModifierFlag::COMMAND_L,
             KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L
         </autogen>
-</item>
+    </item>
     <item>
         <name>Disable right-cmd+space</name>
         <identifier>private.mapping_disable_rightcmd_space</identifier>
-        <autogen>__KeyToKey__
-            KeyCode::SPACE, ModifierFlag::COMMAND_R,
-        </autogen>
+        <autogen>__KeyToKey__ KeyCode::SPACE, ModifierFlag::COMMAND_R, </autogen>
     </item>
     <item>
-        <name>Swap backslash and del</name>
-        <identifier>private.mapping_swap_backslash_del</identifier>
-        <device_only>
-            DeviceVendor::APPLE_INC,
-            DeviceProduct::RawValue::0x0245,
-        </device_only>
-        <autogen>__KeyToKey__
-            KeyCode::DELETE,
-            KeyCode::BACKSLASH
-        </autogen>
-        <autogen>__KeyToKey__
-            KeyCode::BACKSLASH,
-            KeyCode::DELETE
-        </autogen>
-        <autogen>__KeyToKey__
-            KeyCode::COMMAND_R,
-            KeyCode::DELETE
-        </autogen>
-
+        <name>Kul-87 settings</name>
+        <identifier>private.kul87</identifier>
+        <device_only> DeviceVendor::KEYED_UP_LABS, DeviceProduct::KUL87, </device_only>
+        <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::DELETE</autogen>
+        <autogen>__KeyToKey__ KeyCode::CONTROL_L, KeyCode::FN</autogen>
     </item>
+    <item>
+        <name>Internal keyboard</name>
+        <identifier>private.internal_apple_keyboard</identifier>
+        <device_only> DeviceVendor::APPLE_INC, DeviceProduct::RawValue::0x0245, </device_only>
+        <autogen>__KeyToKey__ KeyCode::DELETE, KeyCode::BACKSLASH </autogen>
+        <autogen>__KeyToKey__ KeyCode::BACKSLASH, KeyCode::DELETE </autogen>
+        <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::DELETE </autogen>
+    </item>
+   <item>
+        <name>Mapping fn-hjkl</name>
+        <identifier>private.fn_hjkl</identifier>
+        <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT </autogen>
+        <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN </autogen>
+        <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP </autogen>
+        <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT </autogen>
+    </item>
+
 </root>

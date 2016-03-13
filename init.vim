@@ -58,6 +58,7 @@ Plug 'vim-scripts/LargeFile'
 Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
+Plug 'ryanoasis/vim-devicons'
 
 if IS_NVIM
     " Nvim specific plugins
