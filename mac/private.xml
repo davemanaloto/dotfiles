@@ -15,7 +15,11 @@
             KeyCode::ESCAPE, ModifierFlag::CONTROL_L,
             KeyCode::BACKQUOTE
         </autogen>
-    </item>
+        <autogen>__KeyToKey__
+            KeyCode::ESCAPE, ModifierFlag::COMMAND_L,
+            KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L
+        </autogen>
+</item>
     <item>
         <name>Disable right-cmd+space</name>
         <identifier>private.mapping_disable_rightcmd_space</identifier>
