@@ -94,6 +94,11 @@ set linebreak
 
 " Disable mouse clicking
 set mouse -=a
+
+" Disable the bell
+set noeb
+set vb
+set t_vb=
 "}}}
 
 "{{{ Look
