@@ -1,7 +1,22 @@
 " vim:fdm=marker
+if has('nvim')
+    let PLUGGED_PATH='~/.config/nvim/plugged'
+    let IS_NVIM=1
+else
+    let PLUGGED_PATH='~/.vim/plugged'
+    let IS_NVIM=0
+    set nocompatible
+    set encoding=utf-8
+    set ttyfast
+
+    if !has('gui_running')
+        set t_Co=256
+    endif
+endif
 
 " {{{ Plugins
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin(PLUGGED_PATH)
+
 Plug 'airblade/vim-gitgutter'
 Plug 'amix/vim-zenroom2'
 Plug 'ap/vim-css-color'
@@ -23,7 +38,6 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'pangloss/vim-javascript'
 Plug 'rking/ag.vim'
 Plug 'sgur/vim-editorconfig'
-Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-expand-region'
 Plug 'tmux-plugins/vim-tmux'
@@ -42,8 +56,17 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/LargeFile'
 Plug 'Yggdroot/indentLine'
+
+if IS_NVIM
+    " Nvim specific plugins
+    Plug 'Shougo/deoplete.nvim'
+else
+    " Vim specific plugins
+endif
+
 call plug#end()
 
+" Don't load the rest of the vimrc if we are instal mode
 if $INSTALLMODE == '1'
   finish
 endif
@@ -105,19 +128,19 @@ let g:airline_theme='molokai'
 "}}}
 
 "{{{ Backups
+
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
+
 "}}}
 
 "{{{ Custom key mappings
 
 " Change mapleader
 let mapleader = "\<Space>"
-
-"imap <c-x><c-k> <c-x><c-k>
 
 " Map jj to exit insert mode.
 imap jj <Esc>
@@ -176,8 +199,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " {{{ Goyo - Zen Mode
 function! s:goyo_enter()
   silent !tmux set status off
-  "set noshowmode
-  set noshowcmd " Show (partial) command in the status line.
+  set noshowcmd
   set scrolloff=999
 
   " Allow quiting

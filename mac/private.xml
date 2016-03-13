@@ -38,5 +38,10 @@
             KeyCode::BACKSLASH,
             KeyCode::DELETE
         </autogen>
+        <autogen>__KeyToKey__
+            KeyCode::COMMAND_R,
+            KeyCode::DELETE
+        </autogen>
+
     </item>
 </root>
