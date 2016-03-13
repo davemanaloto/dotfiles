@@ -55,7 +55,9 @@ Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/LargeFile'
+Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
+Plug 'morhetz/gruvbox'
 
 if IS_NVIM
     " Nvim specific plugins
@@ -102,7 +104,7 @@ else
 endif
 
 set background=dark
-colorscheme molokai
+colorscheme gruvbox
 
 set laststatus=2
 set showtabline=2
@@ -123,7 +125,7 @@ set noshowmode " Hide the default mode text since it shows in our status line
 " Airline status line
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='molokai'
+let g:airline_theme='gruvbox'
 
 "}}}
 
