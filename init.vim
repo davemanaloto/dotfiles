@@ -1,4 +1,6 @@
 " vim:fdm=marker
+
+" {{{ Vim/Nvim compatibility
 if has('nvim')
     let PLUGGED_PATH='~/.config/nvim/plugged'
     let IS_NVIM=1
@@ -13,6 +15,7 @@ else
         set t_Co=256
     endif
 endif
+" }}}
 
 " {{{ Plugins
 call plug#begin(PLUGGED_PATH)
@@ -24,7 +27,6 @@ Plug 'benekastah/neomake'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chun-Yang/vim-action-ag'
 Plug 'easymotion/vim-easymotion'
-Plug 'godlygeek/tabular'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'honza/vim-snippets'
 Plug 'janko-m/vim-test'
@@ -93,12 +95,23 @@ set wrap
 set linebreak
 
 " Disable mouse clicking
-set mouse -=a
+" set mouse -=a
 
 " Disable the bell
 set noeb
 set vb
 set t_vb=
+
+" Backup settings
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
+
+" save and restore folds when a file is closed and re-opened
+autocmd BufWinLeave * mkview
+autocmd BufWinEnter * silent! loadview
 "}}}
 
 "{{{ Look
@@ -112,12 +125,18 @@ endif
 set background=dark
 colorscheme molokai
 
+" Airline status line
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='molokai'
+
+" Show status and tabline for airline
 set laststatus=2
 set showtabline=2
 set guioptions=2
 
 " Show line numbers
-" set number
+set number
 " Show relative numbers
 set relativenumber
 
@@ -126,22 +145,8 @@ set invlist
 set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
-set noshowmode " Hide the default mode text since it shows in our status line
-
-" Airline status line
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='molokai'
-
-"}}}
-
-"{{{ Backups
-
-set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set writebackup
+" Hide the default mode text
+set noshowmode
 
 "}}}
 
@@ -187,22 +192,40 @@ nmap <leader>c gcc
 vmap <leader>c gc
 
 " Fugitive
-nmap <silent> <leader>gs :Gstatus<cr>
-nmap <leader>ge :Gedit<cr>
-nmap <silent><leader>gr :Gread<cr>
-nmap <silent><leader>gb :Gblame<cr>
-nmap <silent><leader>gc :Gcommit<cr>
+nmap <silent> <leader>gs :Gstatus<CR>
+nmap <leader>ge :Gedit<CR>
+nmap <silent><leader>gr :Gread<CR>
+nmap <silent><leader>gb :Gblame<CR>
+nmap <silent><leader>gc :Gcommit<CR>
 
 " Folding
 nmap <silent><leader>z  za
 vmap <silent><leader>z  za
 
 "}}}
-"
+
+" {{{ Plugin settings
+" Deoplete
 let g:deoplete#enable_at_startup = 1
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" Don't align comments or text in strings
+let g:easy_align_ignore_groups = ['Comment', 'String']
+"
+" Neomake
+autocmd BufWritePost * Neomake
+
+let g:tmuxline_preset = {
+       \'a'    : '#S',
+       \'win'  : ['#I', '#W'],
+       \'cwin' : ['#I', '#W', '#F'],
+       \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}'],
+       \'z'    : '%l:%M %p %b %d',
+       \'options' : {'status-justify' : 'left'}}
+" \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}', '#\{battery_icon\}#\{battery_percentage\}'],
+" }}}
 
 " {{{ Goyo - Zen Mode
 function! s:goyo_enter()
@@ -219,7 +242,6 @@ endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
-  "set showmode
   set showcmd
   set scrolloff=5
   " Quit Vim if this is the only remaining buffer
@@ -235,23 +257,3 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
-
-" {{{ Buffer/File Open/Close
-" Enable neomake on the current file on every write
-autocmd BufWritePost * Neomake
-
-" save and restore folds when a file is closed and re-opened
-autocmd BufWinLeave * mkview
-autocmd BufWinEnter * silent! loadview
-"}}}
-
-" {{{ Tmuxline
-" let g:tmuxline_preset = {
-"        \'a'    : '#S',
-"        \'win'  : ['#I', '#W'],
-"        \'cwin' : ['#I', '#W', '#F'],
-"        \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}'],
-"        \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}', '#\{battery_icon\}#\{battery_percentage\}'],
-"        \'z'    : '%l:%M %p %b %d',
-"        \'options' : {'status-justify' : 'left'}}
-" "}}}
