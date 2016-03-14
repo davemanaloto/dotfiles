@@ -100,3 +100,8 @@ if [[ `uname` == "Darwin" ]]; then
     fi
     ln -s ~/.dotfiles/mac/private.xml ~/Library/Application\ Support/Karabiner/private.xml
 fi
+
+if [[ ! -d ~/local/nerd-fonts ]]; then
+    git clone https://github.com/ryanoasis/nerd-fonts.git ~/local/nerd-fonts
+    ~/local/nerd-fonts/install.sh
+fi
