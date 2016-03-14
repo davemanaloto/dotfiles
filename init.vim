@@ -61,6 +61,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
+Plug 'mbbill/undotree'
 
 if IS_NVIM
     " Nvim specific plugins
@@ -109,9 +110,16 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
+"
+" Save undo state
+set undofile               " Save undo's after file closes
+set undodir=$HOME/.undodir " where to save undo histories
+set undolevels=1000        " How many undos
+set undoreload=10000       " number of lines to save for undo
+
 " save and restore folds when a file is closed and re-opened
-autocmd BufWinLeave * mkview
-autocmd BufWinEnter * silent! loadview
+"autocmd BufWinLeave * mkview
+"autocmd BufWinEnter * silent! loadview
 "}}}
 
 "{{{ Look
