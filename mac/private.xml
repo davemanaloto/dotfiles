@@ -1,4 +1,5 @@
 <root>
+    <!-- Kul87 -->
     <devicevendordef>
         <vendorname>KEYED_UP_LABS</vendorname>
         <vendorid>0x05AC</vendorid>
@@ -7,35 +8,61 @@
         <productname>KUL87</productname>
         <productid>0x024F</productid>
     </deviceproductdef>
+
+    <!-- Infinity 60% -->
+    <devicevendordef>
+        <vendorname>KIIBOHD</vendorname>
+        <vendorid>0x1C11</vendorid>
+    </devicevendordef>
+    <deviceproductdef>
+        <productname>INFINITY_60</productname>
+        <productid>0xB04D</productid>
+    </deviceproductdef>
+
+    <!-- Pok3r -->
+    <devicevendordef>
+        <vendorname>VORTEX</vendorname>
+        <vendorid>0x04D9</vendorid>
+    </devicevendordef>
+    <deviceproductdef>
+        <productname>POK3R</productname>
+        <productid>0x0141</productid>
+    </deviceproductdef>
+
     <item>
-        <name>JIS Underscore to Control_R</name>
-        <identifier>private.jis_underscore</identifier>
+        <name>Dave's global mappings</name>
+        <identifier>private.daves</identifier>
+
+        <!-- CtrlL+Esc to Backquote -->
+        <autogen>__KeyToKey__ KeyCode::ESCAPE, ModifierFlag::CONTROL_L, KeyCode::BACKQUOTE </autogen>
+
+        <!-- CmdL+Esc to CmdL+Backquote -->
+        <autogen>__KeyToKey__ KeyCode::ESCAPE, ModifierFlag::COMMAND_L, KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L </autogen>
+
+        <!-- CmdR to del -->
+        <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::DELETE</autogen>
+
+        <!-- Caplock was remapped to JIS_UNDERSCORE
+             Turn it into CONTROL_L.
+        -->
         <autogen>__KeyToKey__ KeyCode::JIS_UNDERSCORE, KeyCode::CONTROL_L</autogen>
+
+        <!-- Map FN+hjkl to arrows -->
+        <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT </autogen>
+        <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN </autogen>
+        <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP </autogen>
+        <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT </autogen>
+
     </item>
-   <item>
-        <name>Map Shift+Escape to backtick</name>
-        <identifier>private.mapping_shift_escape_to_backtick</identifier>
-        <autogen>__KeyToKey__
-            KeyCode::ESCAPE, ModifierFlag::CONTROL_L,
-            KeyCode::BACKQUOTE
-        </autogen>
-        <autogen>__KeyToKey__
-            KeyCode::ESCAPE, ModifierFlag::COMMAND_L,
-            KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L
-        </autogen>
-    </item>
+
     <item>
-        <name>Disable right-cmd+space</name>
-        <identifier>private.mapping_disable_rightcmd_space</identifier>
-        <autogen>__KeyToKey__ KeyCode::SPACE, ModifierFlag::COMMAND_R, </autogen>
-    </item>
-    <item>
-        <name>Kul-87 settings</name>
+        <name>Kul-87</name>
         <identifier>private.kul87</identifier>
         <device_only> DeviceVendor::KEYED_UP_LABS, DeviceProduct::KUL87, </device_only>
         <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::DELETE</autogen>
         <autogen>__KeyToKey__ KeyCode::CONTROL_L, KeyCode::FN</autogen>
     </item>
+
     <item>
         <name>Internal keyboard</name>
         <identifier>private.internal_apple_keyboard</identifier>
@@ -44,13 +71,17 @@
         <autogen>__KeyToKey__ KeyCode::BACKSLASH, KeyCode::DELETE </autogen>
         <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::DELETE </autogen>
     </item>
-   <item>
-        <name>Mapping fn-hjkl</name>
-        <identifier>private.fn_hjkl</identifier>
-        <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT </autogen>
-        <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN </autogen>
-        <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP </autogen>
-        <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT </autogen>
+
+    <item>
+        <name>Infinity 60%</name>
+        <identifier>private.infinity60</identifer>
+        <device_only>DeviceVendor::KIIBOHD, DeviceProduct::INFINITY_60</device_only>
     </item>
 
+    <item>
+        <name>Pok3r</name>
+        <identifier>private.pok3r</identifer>
+        <device_only>DeviceVendor::VORTEX, DeviceProduct::POK3R</device_only>
+        <autogen>__KeyToKey__ KeyCode::SPACE, ModifierFlag::COMMAND_R, </autogen>
+    </item>
 </root>
