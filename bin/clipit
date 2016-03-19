@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+if [[ `uname` == "Darwin" ]]; then
+    echo $@ | nc localhost 8377
+fi

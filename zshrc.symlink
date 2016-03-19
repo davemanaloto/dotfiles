@@ -36,7 +36,7 @@ fi
 # Exports
 export EDITOR=nvim
 export DEFAULT_USER="dave"
-PATH="$HOME/local/bin:/usr/local/bin:$HOME/bin:$PATH"
+PATH="$HOME/.dotfiles/bin:$HOME/local/bin:/usr/local/bin:$HOME/bin:$PATH"
 MANPATH="$HOME/local/man:$MANPATH"
 
 # Aliases
@@ -57,6 +57,9 @@ elif [[ `uname` == "Linux" ]]; then
     # Linux specific
     export PATH=$HOME/.linuxbrew/bin:$PATH
 fi
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities id_rsa
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fasd --init auto)"

@@ -11,12 +11,12 @@
 
     <!-- Infinity 60% -->
     <devicevendordef>
-        <vendorname>KIIBOHD</vendorname>
-        <vendorid>0x1C11</vendorid>
+        <vendorname>TMK</vendorname>
+        <vendorid>0xFEED</vendorid>
     </devicevendordef>
     <deviceproductdef>
         <productname>INFINITY_60</productname>
-        <productid>0xB04D</productid>
+        <productid>0x6464</productid>
     </deviceproductdef>
 
     <!-- Pok3r -->
@@ -74,13 +74,13 @@
 
     <item>
         <name>Infinity 60%</name>
-        <identifier>private.infinity60</identifer>
-        <device_only>DeviceVendor::KIIBOHD, DeviceProduct::INFINITY_60</device_only>
+        <identifier>private.infinity60</identifier>
+        <device_only>DeviceVendor::TMK, DeviceProduct::INFINITY_60</device_only>
     </item>
 
     <item>
         <name>Pok3r</name>
-        <identifier>private.pok3r</identifer>
+        <identifier>private.pok3r</identifier>
         <device_only>DeviceVendor::VORTEX, DeviceProduct::POK3R</device_only>
         <autogen>__KeyToKey__ KeyCode::SPACE, ModifierFlag::COMMAND_R, </autogen>
     </item>

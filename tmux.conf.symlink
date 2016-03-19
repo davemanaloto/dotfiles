@@ -22,7 +22,7 @@ bind - split-window -v
 # Reload the file with Prefix r
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
-# Load theme before plugins so they are properly usej
+# Load theme before plugins so they are properly used
 if-shell 'test "$(uname)" = "Darwin"' 'source ~/.dotfiles/tmux.theme.laptop'
 if-shell 'test "$(uname)" = "Linux"' 'source ~/.dotfiles/tmux.theme.desktop'
 
@@ -41,3 +41,6 @@ unbind C-h
 unbind C-j
 unbind C-k
 unbind C-l
+
+bind-key -t vi-copy Enter copy-pipe "clipit"
+

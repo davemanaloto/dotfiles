@@ -95,8 +95,8 @@ set hlsearch
 set wrap
 set linebreak
 
-" Disable mouse clicking
-" set mouse -=a
+" Enable the mouse
+set mouse +=a
 
 " Disable the bell
 set noeb
@@ -210,6 +210,8 @@ nmap <silent><leader>gc :Gcommit<CR>
 nmap <silent><leader>z  za
 vmap <silent><leader>z  za
 
+" Paste whatever's in the buffer to system clipboard
+nnoremap <leader>y :call system('clipit', @0)<CR>
 "}}}
 
 " {{{ Plugin settings
