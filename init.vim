@@ -62,6 +62,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
+Plug 'mhinz/vim-grepper'
 
 if IS_NVIM
     " Nvim specific plugins
@@ -212,6 +213,16 @@ vmap <silent><leader>z  za
 
 " Paste whatever's in the buffer to system clipboard
 nnoremap <leader>y :call system('clipit', @0)<CR>
+
+nnoremap <leader>u :UndotreeToggle<CR>
+
+" Grepper
+nnoremap <leader>git :Grepper -tool git -noswitch<cr>
+nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep -G '^.+\.txt'<cr>
+nnoremap <leader>*   :Grepper -tool ack -cword -noprompt<cr>
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
 "}}}
 
 " {{{ Plugin settings
@@ -236,6 +247,13 @@ let g:tmuxline_preset = {
        \'options' : {'status-justify' : 'left'}}
 " \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}', '#\{battery_icon\}#\{battery_percentage\}'],
 " }}}
+
+" Mimic :grep and make ag the default tool.
+let g:grepper = {
+    \ 'tools': ['ag', 'git', 'grep'],
+    \ 'open':  0,
+    \ 'jump':  1,
+    \ }
 
 " {{{ Goyo - Zen Mode
 function! s:goyo_enter()
