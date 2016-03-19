@@ -62,7 +62,7 @@ Plug 'Yggdroot/indentLine'
 "Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
-Plug 'mhinz/vim-grepper'
+"Plug 'mhinz/vim-grepper'
 "Plug 'svermeulen/vim-easyclip'
 
 if IS_NVIM
@@ -178,10 +178,6 @@ nmap <leader>l :set list!<CR>:set relativenumber!<CR>:IndentLinesToggle<CR>
 map <leader>sa zg
 map <leader>s? z=
 
-" File finding
-nmap <Leader>o :FZF<CR>
-map <C-p> :FZF<CR>
-
 " Toggle Zen-mode
 nmap <silent> <leader>z :Goyo<cr>
 
@@ -220,12 +216,31 @@ nnoremap <leader>y :call system('clipit', @0)<CR>
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
+nnoremap <silent> <Leader>C        :Colors<CR>
+nnoremap <silent> <Leader><Enter>  :Buffers<CR>
+nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>`        :Marks<CR>
+
+"inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" File finding
+map <C-p> :Files<CR>
+
+
 " Grepper
-nnoremap <leader>git :Grepper -tool git -noswitch<cr>
-nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep<cr>
-nnoremap <leader>*   :Grepper -tool ag -cword -noprompt --vimgrep<cr>
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
+" nnoremap <leader>git :Grepper -tool git -noswitch<cr>
+" nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep<cr>
+" nnoremap <leader>*   :Grepper -tool ag -cword -noprompt --vimgrep<cr>
+" nmap gs <plug>(GrepperOperator)
+" xmap gs <plug>(GrepperOperator)
 
 "}}}
 

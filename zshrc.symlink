@@ -45,6 +45,8 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias vimrc='$EDITOR $HOME/.vimrc'
 alias nvimrc='$EDITOR $HOME/.config/nvim/init.vim'
+alias e='$EDITOR'
+alias v='f -e $EDITOR'
 
 # Platform specific changes
 if [[ `uname` == "Darwin" ]]; then
