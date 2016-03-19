@@ -1,4 +1,6 @@
-#!/usr/bin/env zsh
-if [[ `uname` == "Darwin" ]]; then
+#!/bin/bash
+if [ $# -ge 1 ]; then
     echo $@ | nc localhost 8377
+else
+    cat - | nc localhost 8377
 fi
