@@ -25,7 +25,6 @@ Plug 'amix/vim-zenroom2'
 Plug 'ap/vim-css-color'
 Plug 'benekastah/neomake'
 Plug 'christoomey/vim-tmux-navigator'
-"Plug 'Chun-Yang/vim-action-ag'
 Plug 'easymotion/vim-easymotion'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'honza/vim-snippets'
@@ -38,7 +37,6 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'Konfekt/FastFold'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'pangloss/vim-javascript'
-"Plug 'rking/ag.vim'
 Plug 'sgur/vim-editorconfig'
 Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-expand-region'
@@ -59,11 +57,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/LargeFile'
 Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
-"Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
-"Plug 'mhinz/vim-grepper'
-"Plug 'svermeulen/vim-easyclip'
 
 if IS_NVIM
     " Nvim specific plugins
@@ -119,9 +114,6 @@ set undodir=$HOME/.undodir " where to save undo histories
 set undolevels=1000        " How many undos
 set undoreload=10000       " number of lines to save for undo
 
-" save and restore folds when a file is closed and re-opened
-"autocmd BufWinLeave * mkview
-"autocmd BufWinEnter * silent! loadview
 "}}}
 
 "{{{ Look
@@ -132,6 +124,7 @@ else
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
+" Dark background and set colorscheme
 set background=dark
 colorscheme molokai
 
@@ -147,11 +140,12 @@ set guioptions=2
 
 " Show line numbers
 set number
+
 " Show relative numbers
 set relativenumber
 
 " Show all characters
-set invlist
+"set invlist
 set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
@@ -171,9 +165,6 @@ let mapleader = "\<Space>"
 " Map jj to exit insert mode.
 imap jj <Esc>
 
-" Toggle displaying all characters
-nmap <leader>l :set list!<CR>:set relativenumber!<CR>:IndentLinesToggle<CR>
-
 " Spell checking
 map <leader>sa zg
 map <leader>s? z=
@@ -182,8 +173,8 @@ map <leader>s? z=
 nmap <silent> <leader>z :Goyo<cr>
 
 " Tab switching
-nmap <leader>[ :tabprevious<CR>
-nmap <leader>] :tabnext<CR>
+"nmap <leader>[ :tabprevious<CR>
+"nmap <leader>] :tabnext<CR>
 
 " Allow indent/deindent with tab/shift-tab
 nmap <Tab> >>_
@@ -196,7 +187,7 @@ vmap <S-Tab> <gv
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Commmenting
+" Commenting
 nmap <leader>c gcc
 vmap <leader>c gc
 
@@ -214,33 +205,22 @@ vmap <silent><leader>z  za
 " Paste whatever's in the buffer to system clipboard
 nnoremap <leader>y :call system('clipit', @0)<CR>
 
+" Undo tree
 nnoremap <leader>u :UndotreeToggle<CR>
 
+" Mappings for FZF
+nnoremap <C-p>                     :Files<CR>
 nnoremap <silent> <Leader>C        :Colors<CR>
 nnoremap <silent> <Leader><Enter>  :Buffers<CR>
 nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
 nnoremap <silent> <Leader>`        :Marks<CR>
-
-"inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-
-" File finding
-map <C-p> :Files<CR>
-
-
-" Grepper
-" nnoremap <leader>git :Grepper -tool git -noswitch<cr>
-" nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep<cr>
-" nnoremap <leader>*   :Grepper -tool ag -cword -noprompt --vimgrep<cr>
-" nmap gs <plug>(GrepperOperator)
-" xmap gs <plug>(GrepperOperator)
 
 "}}}
 
@@ -257,6 +237,7 @@ let g:easy_align_ignore_groups = ['Comment', 'String']
 " Neomake
 autocmd BufWritePost * Neomake
 
+" TMuxline status, need to install plugin
 let g:tmuxline_preset = {
        \'a'    : '#S',
        \'win'  : ['#I', '#W'],
@@ -265,14 +246,12 @@ let g:tmuxline_preset = {
        \'z'    : '%l:%M %p %b %d',
        \'options' : {'status-justify' : 'left'}}
 " \'y'    : ['#\{cpu_icon\}#\{cpu_percentage\}', '#\{battery_icon\}#\{battery_percentage\}'],
-" }}}
 
-" Mimic :grep and make ag the default tool.
-let g:grepper = {
-    \ 'tools': ['ag', 'git', 'grep'],
-    \ 'open':  1,
-    \ 'jump':  0,
-    \ }
+if IS_NVIM
+    let $FZF_DEFAULT_OPTS .= ' --inline-info'
+endif
+
+" }}}
 
 " {{{ Goyo - Zen Mode
 function! s:goyo_enter()
@@ -305,6 +284,4 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
-if IS_NVIM
-    let $FZF_DEFAULT_OPTS .= ' --inline-info'
-endif
+
