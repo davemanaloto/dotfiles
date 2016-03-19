@@ -25,7 +25,7 @@ Plug 'amix/vim-zenroom2'
 Plug 'ap/vim-css-color'
 Plug 'benekastah/neomake'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'Chun-Yang/vim-action-ag'
+"Plug 'Chun-Yang/vim-action-ag'
 Plug 'easymotion/vim-easymotion'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'honza/vim-snippets'
@@ -38,7 +38,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'Konfekt/FastFold'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'pangloss/vim-javascript'
-Plug 'rking/ag.vim'
+"Plug 'rking/ag.vim'
 Plug 'sgur/vim-editorconfig'
 Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-expand-region'
@@ -59,10 +59,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/LargeFile'
 Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-grepper'
+"Plug 'svermeulen/vim-easyclip'
 
 if IS_NVIM
     " Nvim specific plugins
@@ -157,6 +158,9 @@ set showbreak=↪
 " Hide the default mode text
 set noshowmode
 
+" Show cursor
+set cursorline
+
 "}}}
 
 "{{{ Custom key mappings
@@ -218,8 +222,8 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
 " Grepper
 nnoremap <leader>git :Grepper -tool git -noswitch<cr>
-nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep -G '^.+\.txt'<cr>
-nnoremap <leader>*   :Grepper -tool ack -cword -noprompt<cr>
+nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep<cr>
+nnoremap <leader>*   :Grepper -tool ag -cword -noprompt --vimgrep<cr>
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
@@ -251,8 +255,8 @@ let g:tmuxline_preset = {
 " Mimic :grep and make ag the default tool.
 let g:grepper = {
     \ 'tools': ['ag', 'git', 'grep'],
-    \ 'open':  0,
-    \ 'jump':  1,
+    \ 'open':  1,
+    \ 'jump':  0,
     \ }
 
 " {{{ Goyo - Zen Mode
@@ -285,3 +289,7 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
+
+if IS_NVIM
+    let $FZF_DEFAULT_OPTS .= ' --inline-info'
+endif
