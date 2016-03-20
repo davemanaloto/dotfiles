@@ -14,6 +14,8 @@ bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iq v
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
 
+# Enable the mouse
+set -g mouse on
 
 # Use | and - to split windows
 bind | split-window -h
