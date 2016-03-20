@@ -40,7 +40,7 @@
         <autogen>__KeyToKey__ KeyCode::ESCAPE, ModifierFlag::COMMAND_L, KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L </autogen>
 
         <!-- CmdR to del -->
-        <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::COMMAND_R, KeyCode::DELETE</autogen>
+        <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::COMMAND_R, KeyCode::COMMAND_R, KeyCode::DELETE</autogen>
 
         <!-- Caplock was remapped to JIS_UNDERSCORE
              Turn it into CONTROL_L.
