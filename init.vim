@@ -172,10 +172,6 @@ map <leader>s? z=
 " Toggle Zen-mode
 nmap <silent> <leader>z :Goyo<cr>
 
-" Tab switching
-"nmap <leader>[ :tabprevious<CR>
-"nmap <leader>] :tabnext<CR>
-
 " Allow indent/deindent with tab/shift-tab
 nmap <Tab> >>_
 nmap <S-Tab> <<_
