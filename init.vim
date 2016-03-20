@@ -59,6 +59,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
+Plug 'diepm/vim-rest-console'
 
 if IS_NVIM
     " Nvim specific plugins
