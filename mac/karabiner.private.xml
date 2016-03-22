@@ -42,9 +42,6 @@
         <!-- CmdR to del -->
         <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::COMMAND_R, KeyCode::COMMAND_R, KeyCode::DELETE</autogen>
 
-        <!-- Map a to FN for mapping a+hjkl to arrows -->
-        <autogen>__KeyOverlaidModifier__ KeyCode::A, KeyCode::FN, KeyCode::A</autogen>
-
 
         <!-- Caplock was remapped to JIS_UNDERSCORE
              Turn it into CONTROL_L.
@@ -58,10 +55,10 @@
         <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT </autogen>
 
         <!-- Map right-modifiers to arrows -->
-        <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::OPTION_R, KeyCode::OPTION_R, KeyCode::CURSOR_LEFT</autogen>
-        <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::SHIFT_R, KeyCode::SHIFT_R, KeyCode::CURSOR_UP</autogen>
-        <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::FN, KeyCode::FN, KeyCode::CURSOR_DOWN</autogen>
-        <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::CONTROL_R, KeyCode::CONTROL_R, KeyCode::CURSOR_RIGHT</autogen>
+        <!-- <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::OPTION_R, KeyCode::OPTION_R, KeyCode::CURSOR_LEFT</autogen> -->
+        <!-- <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::SHIFT_R, KeyCode::SHIFT_R, KeyCode::CURSOR_UP</autogen> -->
+        <!-- <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::FN, KeyCode::FN, KeyCode::CURSOR_DOWN</autogen> -->
+        <!-- <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::CONTROL_R, KeyCode::CONTROL_R, KeyCode::CURSOR_RIGHT</autogen> -->
 
         <autogen>__KeyToKey__ KeyCode::CONTROL_L, KeyCode::FN </autogen>
 
