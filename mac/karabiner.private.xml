@@ -1,3 +1,4 @@
+
 <root>
     <!-- Kul87 -->
     <devicevendordef>
@@ -46,21 +47,14 @@
         <!-- Caplock was remapped to JIS_UNDERSCORE
              Turn it into CONTROL_L.
         -->
-        <autogen>__KeyToKey__ KeyCode::JIS_UNDERSCORE, KeyCode::CONTROL_L</autogen>
+        <!-- <autogen>__KeyToKey__ KeyCode::JIS_UNDERSCORE, KeyCode::CONTROL_L</autogen> -->
 
-        <!-- Map FN+hjkl to arrows -->
-        <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT </autogen>
-        <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN </autogen>
-        <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP </autogen>
-        <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT </autogen>
+        <!-- <1!-- Map FN+hjkl to arrows --1> -->
+        <!-- <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT </autogen> -->
+        <!-- <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN </autogen> -->
+        <!-- <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP </autogen> -->
+        <!-- <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT </autogen> -->
 
-        <!-- Map right-modifiers to arrows -->
-        <!-- <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::OPTION_R, KeyCode::OPTION_R, KeyCode::CURSOR_LEFT</autogen> -->
-        <!-- <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::SHIFT_R, KeyCode::SHIFT_R, KeyCode::CURSOR_UP</autogen> -->
-        <!-- <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::FN, KeyCode::FN, KeyCode::CURSOR_DOWN</autogen> -->
-        <!-- <autogen>__KeyOverlaidModifierWithRepeat__ KeyCode::CONTROL_R, KeyCode::CONTROL_R, KeyCode::CURSOR_RIGHT</autogen> -->
-
-        <autogen>__KeyToKey__ KeyCode::CONTROL_L, KeyCode::FN </autogen>
 
     </item>
 
@@ -76,6 +70,7 @@
         <device_only> DeviceVendor::APPLE_INC, DeviceProduct::ANY</device_only>
         <autogen>__KeyToKey__ KeyCode::DELETE, KeyCode::BACKSLASH </autogen>
         <autogen>__KeyToKey__ KeyCode::BACKSLASH, KeyCode::DELETE </autogen>
+        <!-- <autogen>__KeyToKey__ KeyCode::CONTROL_L, KeyCode::FN </autogen> -->
     </item>
 
     <item>
@@ -89,4 +84,173 @@
         <identifier>private.pok3r</identifier>
         <device_only>DeviceVendor::VORTEX, DeviceProduct::POK3R</device_only>
     </item>
+
+  <!-- This file is a Keyremap4MacBook definition file that allows you to use the "SpaceFN"
+       keyboard layout on your Mac.
+
+       The main point of the SpaceFN layout is to turn your spacebar into a single big "Fn" key
+       that will give you access to all the navigation and function keys without moving your hand
+       from the home row.
+
+       SpaceFN can work on any keyboard, but is especially well suited for "60%" ones because
+       it allows access to all the navigation and function keys from the alphabetical cluster.
+       It doesn't require a dedicated Fn key and doesn't change the primary function of any key.
+
+
+    HOW TO USE:
+
+    - You must have KeyRemap4MacBook installed on your Mac, or you must install it first.
+      KeyRemap4MacBook works on ALL Macs, is free, and is available here:
+        https://pqrs.org/macosx/keyremap4macbook/
+
+    - NOTE: "private.xml" is the file where one can create shortcuts and definitions that
+            KeyRemap4MacBook will use.
+            It is located in /Users/you/Library/Application Support/KeyRemap4MacBook
+            To access it with the Finder:
+            - Open a Finder window
+            - Click on the "Go" menu
+            - Press and hold the Option key (Alt if you have PC keyboard)
+            - Click on Library
+            - Release the Option key
+            - Open "Application Support"
+            - Open "KeyRemap4MacBook"
+            Now you are in the folder where the "private.xml" file should be. You may not have
+            one at this time, so the folder may be empty.
+
+    - If you already have a "private.xml" file:
+      - Save this text as SpaceFN.xml in the same directory as your "private.xml" file.
+      - Edit your "private.xml" file and add this line after the first "<root>" line:
+          <include path="SpaceFN.xml" />
+        NOTE: to edit the file you may need to right-click it, go to "Open with" and finally
+              click on "TextEdit.app".
+        So your private.xml file may look like this:
+          <?xml version="1.0"?>
+          <root>
+            <include path="SpaceFN.xml" />
+          </root>
+      - Save the file.
+      - Open KeyRemap4MacBook (it has a "KEY" icon), then click on "Reload XML".
+      - Check this box: "SpaceFN layout - Basic stuff"
+      - Consider checking some of the other "SpaceFN layout" boxes depending on your needs.
+        Changes take place immediately.
+
+   - If you don't have a "private.xml" file already:
+      - Save this text as "private.xml" in the folder where private.xml is supposed to be.
+      - Open KeyRemap4MacBook (it has a "KEY" icon), then click on "Reload XML".
+      - Check this box: "SpaceFN layout - Basic stuff"
+      - Consider checking some of the other "SpaceFN layout" boxes depending on your needs.
+        Changes take place immediately.
+
+  -->
+
+  <item>
+    <name>SpaceFN layout - Basic stuff</name>
+    <appendix></appendix>
+    <appendix>You must check at least this box to activate the SpaceFN features.</appendix>
+    <appendix></appendix>
+    <appendix>ARROWS:  Space+HJKL=arrows</appendix>
+    <appendix>DEL:         Space+Backspace=Del</appendix>
+    <appendix>INS:          Space+\=Ins</appendix>
+    <appendix>BLANK:     Space+B=Repeating space</appendix>
+    <appendix>Fxx:          Space+1…=F1..F12</appendix>
+    <appendix></appendix>
+    <appendix>IMPORTANT: in the "Key Repeat" tab, you must set:</appendix>
+    <appendix>- Initial modifier wait: 150ms</appendix>
+    <appendix>- Timeout: 300ms</appendix>
+    <appendix>- Delay until repeat: 500ms</appendix>
+    <identifier>remap.KB607_ct</identifier>
+
+    <!-- Space is our new Fn modifier -->
+    <autogen>--KeyOverlaidModifier-- KeyCode::SPACE,
+                                     KeyCode::VK_MODIFIER_EXTRA4, KeyCode::SPACE</autogen>
+
+    <!-- Arrow keys: IJKL -->
+    <autogen>--KeyToKey-- KeyCode::K, ModifierFlag::EXTRA4,
+                          KeyCode::CURSOR_UP</autogen>
+    <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::EXTRA4,
+                          KeyCode::CURSOR_LEFT</autogen>
+    <autogen>--KeyToKey-- KeyCode::J, ModifierFlag::EXTRA4,
+                          KeyCode::CURSOR_DOWN</autogen>
+    <autogen>--KeyToKey-- KeyCode::L, ModifierFlag::EXTRA4,
+                          KeyCode::CURSOR_RIGHT</autogen>
+
+    <!-- DEL on space+Enter -->
+    <autogen>--KeyToKey-- KeyCode::DELETE, ModifierFlag::EXTRA4,
+                          KeyCode::FORWARD_DELETE</autogen>
+
+    <!-- INS on space+Tab -->
+    <autogen>--KeyToKey-- KeyCode::BACKQUOTE, ModifierFlag::EXTRA4,
+                          KeyCode::PC_INSERT</autogen>
+
+    <!-- space+B is an autorepeat space -->
+    <autogen>--KeyToKey-- KeyCode::B, ModifierFlag::EXTRA4,
+                          KeyCode::SPACE</autogen>
+
+    <!-- Function keys -->
+    <autogen>--KeyToKey-- KeyCode::KEY_1, ModifierFlag::EXTRA4,
+                          KeyCode::F1</autogen>
+    <autogen>--KeyToKey-- KeyCode::KEY_2, ModifierFlag::EXTRA4,
+                          KeyCode::F2</autogen>
+    <autogen>--KeyToKey-- KeyCode::KEY_3, ModifierFlag::EXTRA4,
+                          KeyCode::F3</autogen>
+    <autogen>--KeyToKey-- KeyCode::KEY_4, ModifierFlag::EXTRA4,
+                          KeyCode::F4</autogen>
+    <autogen>--KeyToKey-- KeyCode::KEY_5, ModifierFlag::EXTRA4,
+                          KeyCode::F5</autogen>
+    <autogen>--KeyToKey-- KeyCode::KEY_6, ModifierFlag::EXTRA4,
+                          KeyCode::F6</autogen>
+    <autogen>--KeyToKey-- KeyCode::KEY_7, ModifierFlag::EXTRA4,
+                          KeyCode::F7</autogen>
+    <autogen>--KeyToKey-- KeyCode::KEY_8, ModifierFlag::EXTRA4,
+                          KeyCode::F8</autogen>
+    <autogen>--KeyToKey-- KeyCode::KEY_9, ModifierFlag::EXTRA4,
+                          KeyCode::F9</autogen>
+    <autogen>--KeyToKey-- KeyCode::DELETE, ModifierFlag::EXTRA4,
+                          KeyCode::FORWARD_DELETE</autogen>
+
+    <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::EXTRA4,
+                          KeyCode::ESCAPE</autogen>
+
+    <autogen>--KeyToKey-- KeyCode::I, ModifierFlag::EXTRA4,
+                          KeyCode::HOME</autogen>
+    <autogen>--KeyToKey-- KeyCode::U, ModifierFlag::EXTRA4,
+                          KeyCode::END</autogen>
+    <autogen>--KeyToKey-- KeyCode::M, ModifierFlag::EXTRA4,
+                          KeyCode::PAGEUP</autogen>
+    <autogen>--KeyToKey-- KeyCode::N, ModifierFlag::EXTRA4,
+                          KeyCode::PAGEDOWN</autogen>
+
+    <autogen>--KeyToConsumer-- KeyCode::Q, ModifierFlag::EXTRA4,
+                               ConsumerKeyCode::BRIGHTNESS_DOWN</autogen>
+
+    <autogen>--KeyToConsumer-- KeyCode::W, ModifierFlag::EXTRA4,
+                               ConsumerKeyCode::BRIGHTNESS_UP</autogen>
+  </item>
+
+  <item>
+    <name>SpaceFN layout - Mute, Vol-, Vol+</name>
+    <appendix>Check this box to have space + "0", "-" and "\" do Mute, Vol- and Vol+.</appendix>
+    <appendix>Note for non-QWERTY users: it's P and the two keys on the right.</appendix>
+    <identifier>remap.KB607CT_vol_ct</identifier>
+    <autogen>--KeyToConsumer-- KeyCode::0, ModifierFlag::EXTRA4,
+                               ConsumerKeyCode::VOLUME_MUTE</autogen>
+    <autogen>--KeyToConsumer-- KeyCode::MINUS, ModifierFlag::EXTRA4,
+                               ConsumerKeyCode::VOLUME_DOWN</autogen>
+    <autogen>--KeyToConsumer-- KeyCode::EQUAL, ModifierFlag::EXTRA4,
+                               ConsumerKeyCode::VOLUME_UP</autogen>
+  </item>
+
+  <item>
+    <name>SpaceFN layout - Play, Prev, Next</name>
+    <appendix>Check this box to have space + "P", "[" and "]" do Play, Prev, and Next</appendix>
+    <appendix>Note for non-QWERTY users: it's P and the two keys on the right.</appendix>
+    <identifier>remap.KB607CT_music_ct</identifier>
+    <autogen>--KeyToConsumer-- KeyCode::P, ModifierFlag::EXTRA4,
+                               ConsumerKeyCode::MUSIC_PLAY</autogen>
+    <autogen>--KeyToConsumer-- KeyCode::BRACKET_LEFT, ModifierFlag::EXTRA4,
+                               ConsumerKeyCode::MUSIC_PREV</autogen>
+    <autogen>--KeyToConsumer-- KeyCode::BRACKET_RIGHT, ModifierFlag::EXTRA4,
+                               ConsumerKeyCode::MUSIC_NEXT</autogen>
+  </item>
+
 </root>
