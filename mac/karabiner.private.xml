@@ -160,6 +160,12 @@
     <appendix>- Delay until repeat: 500ms</appendix>
     <identifier>remap.KB607_ct</identifier>
 
+
+    <block>
+        <device_not>
+            DeviceVendor::TMK, DeviceProduct::INFINITY_60
+        </device_not>
+
     <!-- Space is our new Fn modifier -->
     <autogen>--KeyOverlaidModifier-- KeyCode::SPACE,
                                      KeyCode::VK_MODIFIER_EXTRA4, KeyCode::SPACE</autogen>
@@ -215,9 +221,9 @@
                           KeyCode::HOME</autogen>
     <autogen>--KeyToKey-- KeyCode::U, ModifierFlag::EXTRA4,
                           KeyCode::END</autogen>
-    <autogen>--KeyToKey-- KeyCode::M, ModifierFlag::EXTRA4,
+    <autogen>--KeyToKey-- KeyCode::COMMA, ModifierFlag::EXTRA4,
                           KeyCode::PAGEUP</autogen>
-    <autogen>--KeyToKey-- KeyCode::N, ModifierFlag::EXTRA4,
+    <autogen>--KeyToKey-- KeyCode::M, ModifierFlag::EXTRA4,
                           KeyCode::PAGEDOWN</autogen>
 
     <autogen>--KeyToConsumer-- KeyCode::Q, ModifierFlag::EXTRA4,
@@ -225,32 +231,21 @@
 
     <autogen>--KeyToConsumer-- KeyCode::W, ModifierFlag::EXTRA4,
                                ConsumerKeyCode::BRIGHTNESS_UP</autogen>
-  </item>
 
-  <item>
-    <name>SpaceFN layout - Mute, Vol-, Vol+</name>
-    <appendix>Check this box to have space + "0", "-" and "\" do Mute, Vol- and Vol+.</appendix>
-    <appendix>Note for non-QWERTY users: it's P and the two keys on the right.</appendix>
-    <identifier>remap.KB607CT_vol_ct</identifier>
     <autogen>--KeyToConsumer-- KeyCode::0, ModifierFlag::EXTRA4,
                                ConsumerKeyCode::VOLUME_MUTE</autogen>
     <autogen>--KeyToConsumer-- KeyCode::MINUS, ModifierFlag::EXTRA4,
                                ConsumerKeyCode::VOLUME_DOWN</autogen>
     <autogen>--KeyToConsumer-- KeyCode::EQUAL, ModifierFlag::EXTRA4,
                                ConsumerKeyCode::VOLUME_UP</autogen>
-  </item>
 
-  <item>
-    <name>SpaceFN layout - Play, Prev, Next</name>
-    <appendix>Check this box to have space + "P", "[" and "]" do Play, Prev, and Next</appendix>
-    <appendix>Note for non-QWERTY users: it's P and the two keys on the right.</appendix>
-    <identifier>remap.KB607CT_music_ct</identifier>
     <autogen>--KeyToConsumer-- KeyCode::P, ModifierFlag::EXTRA4,
                                ConsumerKeyCode::MUSIC_PLAY</autogen>
     <autogen>--KeyToConsumer-- KeyCode::BRACKET_LEFT, ModifierFlag::EXTRA4,
                                ConsumerKeyCode::MUSIC_PREV</autogen>
     <autogen>--KeyToConsumer-- KeyCode::BRACKET_RIGHT, ModifierFlag::EXTRA4,
                                ConsumerKeyCode::MUSIC_NEXT</autogen>
+    </block>
   </item>
 
 </root>
